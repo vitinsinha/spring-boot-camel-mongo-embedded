@@ -1,0 +1,41 @@
+buildscript {
+	ext {
+		springBootVersion = '1.5.4.RELEASE'
+	}
+	repositories {
+		mavenCentral()
+		maven { url "https://repo.spring.io/snapshot" }
+		maven { url "https://repo.spring.io/milestone" }
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+	}
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+group = 'com.vitz'
+version = '1.0.0-SNAPSHOT'
+sourceCompatibility = 1.8
+def camelVersion = '2.19.1'
+
+repositories {
+	mavenCentral()
+	maven { url "https://repo.spring.io/snapshot" }
+	maven { url "https://repo.spring.io/milestone" }
+}
+
+
+dependencies {
+	compile('org.springframework.boot:spring-boot-starter-web')
+	compile("org.apache.camel:camel-spring-boot-starter:${camelVersion}")
+    compile("org.apache.camel:camel-servlet-starter:${camelVersion}")
+    compile("org.apache.camel:camel-jackson-starter:${camelVersion}")
+    compile("org.apache.camel:camel-swagger-java-starter:${camelVersion}")
+    compile("de.flapdoodle.embed:de.flapdoodle.embed.mongo:1.50.5")
+    compile("org.springframework.boot:spring-boot-starter-data-mongodb")
+	testCompile('org.springframework.boot:spring-boot-starter-test')
+}
